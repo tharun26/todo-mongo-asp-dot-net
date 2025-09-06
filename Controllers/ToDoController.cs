@@ -55,12 +55,22 @@ public class ToDoController : ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult> Update(string id, [FromBody]ToDoUpdateDto dto, CancellationToken ct)
     {
-        var existing = await _todoRepo.GetByIdAsync(id);
+        var existing = await _todoRepo.GetByIdAsync(id, ct);
         if (existing is null) return NotFound();
+
+        if (!string.IsNullOrWhiteSpace(dto.AssigneeId))
+        {
+            var exists = await _userRepo.GetById(dto.AssigneeId, ct);
+            if (exists is null)
+            {
+                return BadRequest($"Unknown assignee: {dto.AssigneeId}");
+            }
+        }
 
         existing.Title = dto.Title;
         existing.DueDate = dto.DueDate;
         existing.IsCompleted = dto.IsCompleted;
+        existing.AssigneId = dto.AssigneeId;
 
         var result = await _todoRepo.UpdateAsync(id, existing, ct);
         if (!result)
