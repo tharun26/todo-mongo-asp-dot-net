@@ -24,23 +24,6 @@ Supports CRUD for **Users** and **ToDo tasks**, with the ability to assign each 
 
 ---
 
-## ⚙️ Setup
-
-### 1. Run MongoDB in Docker
-
-```bash
-docker network create appnet
-
-docker run -d \
-  --name mongodb \
-  --network appnet \
-  -p 27017:27017 \
-  -e MONGO_INITDB_ROOT_USERNAME=root \
-  -e MONGO_INITDB_ROOT_PASSWORD=example \
-  -v mongo_data:/data/db \
-  mongo:7
-```
-
 ## Architecture
 
 ```mermaid
@@ -57,4 +40,23 @@ flowchart LR
   end
 
   IMongoDB -->|CRUD| Mongo[(MongoDB: DemoDb)]
+```
+
+---
+
+## ⚙️ Setup
+
+### 1. Run MongoDB in Docker
+
+```bash
+docker network create appnet
+
+docker run -d \
+  --name mongodb \
+  --network appnet \
+  -p 27017:27017 \
+  -e MONGO_INITDB_ROOT_USERNAME=root \
+  -e MONGO_INITDB_ROOT_PASSWORD=example \
+  -v mongo_data:/data/db \
+  mongo:7
 ```
