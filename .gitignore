@@ -1,0 +1,54 @@
+# Build results
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# Visual Studio files
+.vs/
+*.vscode/
+
+# ASP.NET specific
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Logs
+*.log
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+*.psmdcp
+*.ps1
+packages/
+.nuget/
+
+# Dependency directories
+node_modules/
+bower_components/
+
+# Environment files
+.env
+.env.*
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Rider
+.idea/
+
+# Mac / Linux system files
+.DS_Store
+*.swp
+
+# Publish output
+wwwroot/dist/
+wwwroot/build/
