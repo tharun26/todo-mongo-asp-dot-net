@@ -40,3 +40,21 @@ docker run -d \
   -v mongo_data:/data/db \
   mongo:7
 ```
+
+## Architecture
+
+```mermaid
+flowchart LR
+  Client[API Client / Swagger] -->|HTTP| ToDoCtrl[ToDoController]
+  Client -->|HTTP| UsersCtrl[UsersController]
+
+  ToDoCtrl -->|calls| TodoRepo[ITodoRepository / TodoRepository]
+  UsersCtrl -->|calls| UserRepo[IUserRepository / UserRepository]
+
+  subgraph DI[ASP.NET DI Container]
+    TodoRepo --> IMongoDB[(IMongoDatabase)]
+    UserRepo --> IMongoDB
+  end
+
+  IMongoDB -->|CRUD| Mongo[(MongoDB: DemoDb)]
+```
